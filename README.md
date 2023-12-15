@@ -253,3 +253,5 @@ var app = new Vue({
 ```
 
 效果如下：
+
+![示意图](images/README/v-on-1.gif)
