@@ -37,7 +37,7 @@
 
 ### （2）第一个 Vue 程序
 
-源代码：[Teaching Case/1-Vue-base.html](https://github.com/zheng-yi-yi/VueQuickStart/blob/main/Teaching%20Case/1-Vue-base.html)
+示例代码：[Teaching Case/1-Vue-base.html](https://github.com/zheng-yi-yi/VueQuickStart/blob/main/Teaching%20Case/1-Vue-base.html)
 
 ```html
 <!DOCTYPE html>
@@ -134,6 +134,8 @@ var app = new Vue({
 
 
 ### （4）data 数据
+
+> 示例代码：[Teaching Case/2-Vue-data.html](https://github.com/zheng-yi-yi/VueQuickStart/blob/main/Teaching%20Case/2-Vue-data.html)
 
 在`Vue`实例中，我们使用`data`选项来定义数据。
 
