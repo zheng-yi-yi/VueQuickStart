@@ -35,8 +35,9 @@
 
 ---
 
-
 ### （2）第一个 Vue 程序
+
+源代码：[Teaching Case/1-Vue-base.html](https://github.com/zheng-yi-yi/VueQuickStart/blob/main/Teaching%20Case/1-Vue-base.html)
 
 ```html
 <!DOCTYPE html>
@@ -77,7 +78,7 @@
 </div>
 ```
 
-这段代码在页面中创建一个具有id为"app"的div元素，用于 `Vue` 实例的挂载点。
+这段代码在页面中创建一个具有`id`为`"app"`的`div`元素，用于 `Vue` 实例的挂载点。
 
 双大括号 `{{ message }}` 是 `Vue` 的模板语法，表示在这个位置显示Vue实例中的 `message` 数据。
 
@@ -85,7 +86,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
-通过CDN引入Vue.js库，这里使用的是开发版本。
+通过`CDN`引入`Vue.js`库，这里使用的是开发版本。
 
 > - 开发版本（Unminified）：包含了详细的警告和调试信息，文件相对较大。这个版本适用于开发阶段，方便开发者进行调试和定位问题。
 > - 生产版本（Minified）：经过压缩和优化，去除了警告和调试信息，文件体积较小。这个版本适用于部署到生产环境，以提高页面加载速度。
@@ -101,7 +102,7 @@ var app = new Vue({
 ```
 
 - `var app = new Vue({})`：创建一个`Vue`实例对象，该实例对象包含`el`、`data`等属性。
-- `el: "#app"`：指定Vue实例挂载到页面上的元素，这里是`id`为`"app"`的`div`。
+- `el: "#app"`：指定`Vue`实例挂载到页面上的元素，这里是`id`为`"app"`的`div`。
 - `data: { message: "Hello World" }`：定义`Vue`实例的数据，这里有一个名为`message`的数据项，初始值为`"Hello World"`。
 整个流程是，Vue实例被创建并挂载到id为"app"的div上，然后模板语法`{{ message }}`会将`message`的值显示在页面上。
 
@@ -114,7 +115,7 @@ var app = new Vue({
 
 `Vue`实例的作用范围主要由`el`选项指定，它表示`Vue`实例将挂载到哪个`DOM`元素上。`Vue`会管理这个指定的元素及其内部的后代元素。当`Vue`实例被创建并挂载后，它会对该`DOM`元素及其后代元素进行数据绑定和渲染。
 
-`el` 选项的值可以是任何合法的CSS选择器。比如使用类选择器：
+`el` 选项的值可以是任何合法的`CSS`选择器。比如使用类选择器：
 
 
 不过，使用`ID`选择器是一种常见的做法，因为`ID`在`HTML`文档中应该是唯一的，这可以确保`Vue`实例只会挂载到页面上的特定元素上。
