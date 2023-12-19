@@ -14,6 +14,10 @@
 >     - [（2）v-html](#2v-html)
 >     - [（3）v-on](#3v-on)
 >   - [2.3 案例一：计数器](#23-案例一计数器)
+>   - [2.4 Vue 指令](#24-vue-指令)
+>     - [（1）v-show](#1v-show)
+>     - [（2）v-if](#2v-if)
+>     - [（3）v-bind](#3v-bind)
 
 
 # 一、前言
@@ -391,7 +395,7 @@ methods: {
 
 > 需要注意的是，`v-show` 不支持在 `<template>` 元素上使用，也不能和 `v-else` 搭配使用。
 
-我们来看[案例代码](https://github.com/zheng-yi-yi/VueQuickStart/blob/main/Teaching Case/3-Vue-show.html)。
+我们来看[案例代码](https://github.com/zheng-yi-yi/VueQuickStart/blob/main/Teaching%20Case/3-Vue-show.html)。
 
 ```HTML
 <body>
@@ -458,7 +462,7 @@ methods: {
 
 因此，如果需要频繁切换，则使用`v-show`比较好，否则使用 `v-if` 更合适。
 
-可参考[案例代码](https://github.com/zheng-yi-yi/VueQuickStart/blob/main/Teaching Case/4-Vue-if.html)。
+可参考[案例代码](https://github.com/zheng-yi-yi/VueQuickStart/blob/main/Teaching%20Case/4-Vue-if.html)。
 
 ### （3）v-bind
 
@@ -515,4 +519,4 @@ methods: {
 
 可以看到，`:title="imgTitle+'!!!'"`将图片的 `title` 属性绑定到由 `imgTitle` 和字符串 '!!!' 组成的表达式。另外，当我们点击后两张图片时，触发的方法`toggleActive`则用于改变 `isActive` 的值，从而实现类名的动态切换。通过对元素绑定 `class` 属性，根据 `isActive` 数据属性的值来决定是否添加类名 `active`。比较推荐使用对象的方式动态绑定类名，即 `:class="{active:isActive}"`。
 
-参考[案例代码](https://github.com/zheng-yi-yi/VueQuickStart/blob/main/Teaching Case/5-Vue-bind.html)。
+参考[案例代码](https://github.com/zheng-yi-yi/VueQuickStart/blob/main/Teaching%20Case/5-Vue-bind.html)。
