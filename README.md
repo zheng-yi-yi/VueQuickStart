@@ -382,3 +382,137 @@ methods: {
 通过这两个方法，我们就实现了一个简单的计数器，同时加入了一些保护性的逻辑，确保计数器的值在规定的范围内。
 
 完整代码：[demo1-计数器-案例](https://github.com/zheng-yi-yi/VueQuickStart/blob/main/demo-1-计数器/index.html)
+
+## 2.4 Vue 指令
+
+### （1）v-show
+
+`v-show`指令可以根据表达值的真假来切换元素的显示和隐藏。其原理是通过设置内联样式 `display`属性来改变元素的可见性。
+
+> 需要注意的是，`v-show` 不支持在 `<template>` 元素上使用，也不能和 `v-else` 搭配使用。
+
+我们来看[案例代码](https://github.com/zheng-yi-yi/VueQuickStart/blob/main/Teaching Case/3-Vue-show.html)。
+
+```HTML
+<body>
+    <div id="app">
+        <input type="button" value="切换显示状态" @click="changeIsShow">
+        <input type="button" value="累加年龄" @click="addAge">
+        <img v-show="isShow" src="../images/README/monkey.gif" alt="">
+        <img v-show="age>=18" src="../images/README/monkey.gif" alt="">
+    </div>
+
+    <!-- 1.开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                isShow: false,
+                age: 17
+            },
+            methods: {
+                changeIsShow: function () {
+                    this.isShow = !this.isShow;
+                },
+                addAge: function () {
+                    this.age++;
+                }
+            },
+        })
+    </script>
+</body>
+```
+
+在上述代码中，我们使用了 `v-show` 指令来控制两个图片元素的显示状态。
+
+具体的：
+
+```HTML
+<img v-show="isShow" src="../images/README/monkey.gif" alt="">
+```
+
+这个图片元素的显示状态受到 `isShow` 数据属性的控制。
+
+当 `isShow` 的值为 `true` 时，图片显示；当 `isShow` 的值为 `false` 时，图片隐藏。初始时，`isShow` 的值为 `false`，因此图片开始时是隐藏的。
+
+```HTML
+<img v-show="age>=18" src="../images/README/monkey.gif" alt="">
+```
+
+另一张图片元素的显示状态受到表达式 `age>=18` 的控制。如果 `age` 的值大于等于 18，图片显示；否则，图片隐藏。初始时，`age` 的值为 17，因此这个图片开始时是隐藏的。
+
+接着，我们在在 `methods` 选项中定义了两个方法：
+
+- `changeIsShow`：当按钮被点击时，调用此方法，反转 `isShow` 的值，从而切换第一个图片元素的显示状态。
+- `addAge`：当按钮被点击时，调用此方法，将 `age` 的值加一，从而影响第二个图片元素的显示状态，将其显示。
+
+### （2）v-if
+
+和`v-show`指令类似，`v-if`指令是根据表达值的真假来切换元素的显示和隐藏，不同点在于，`v-if`指令是通过操作`dom`元素来实现的，表达式的值为`true`则元素存在于`dom`树中，渲染内容；为`false`则从`dom`树中移除。
+
+> 具体的，当 `v-if` 元素被触发时，元素及其所包含的指令/组件都会销毁和重构。
+
+简单来说，当初始条件为 `false `时，`v-if` 指令不会做任何事，其内容不会被渲染。相比之下，`v-show` 指令则是无论条件如何，其内容都会被渲染，只不过CSS `display` 属性会被切换。
+
+因此，如果需要频繁切换，则使用`v-show`比较好，否则使用 `v-if` 更合适。
+
+可参考[案例代码](https://github.com/zheng-yi-yi/VueQuickStart/blob/main/Teaching Case/4-Vue-if.html)。
+
+### （3）v-bind
+
+`v-bind`指令用于动态地绑定一个或多个属性，比如`src`、`title`和`class`等。
+
+完整的写法是`v-bind:属性名`，简写形式是省略 `v-bind`，直接 `:属性名`即可。
+
+```HTML
+<div id="app">
+    <img v-bind:src="imgSrc" alt="">
+</div>
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            imgSrc: "http://www.itheima.com/images/logo.png",
+        }
+    })
+</script>
+```
+
+可以看到，这个图片元素的 `src` 属性被动态绑定到 Vue 实例中的 `imgSrc` 数据属性。即，图片的来源是由 `imgSrc` 决定的。简写的形式是 `<img :src="imgSrc" alt="">`
+
+```HTML
+<div id="app">
+    <img :src="imgSrc" alt="" :title="imgTitle+'!!!'" :class="isActive?'active':''" @click="toggleActive">
+    <br>
+    <img :src="imgSrc" alt="" :title="imgTitle+'!!!'" :class="{active:isActive}" @click="toggleActive">
+</div>
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            imgSrc: "http://www.itheima.com/images/logo.png",
+            imgTitle: "黑马程序员",
+            isActive: false
+        },
+        methods: {
+            toggleActive: function () {
+                this.isActive = !this.isActive;
+            }
+        },
+    })
+</script>
+```
+
+可以看到，`:title="imgTitle+'!!!'"`将图片的 `title` 属性绑定到由 `imgTitle` 和字符串 '!!!' 组成的表达式。另外，当我们点击后两张图片时，触发的方法`toggleActive`则用于改变 `isActive` 的值，从而实现类名的动态切换。通过对元素绑定 `class` 属性，根据 `isActive` 数据属性的值来决定是否添加类名 `active`。比较推荐使用对象的方式动态绑定类名，即 `:class="{active:isActive}"`。
+
+参考[案例代码](https://github.com/zheng-yi-yi/VueQuickStart/blob/main/Teaching Case/5-Vue-bind.html)。
